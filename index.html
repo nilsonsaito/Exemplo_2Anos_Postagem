@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <title>Introdução ao Canvas com Java Script</title>
+    <!--link rel="stylesheet" href="styles.css"-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Sirin+Stencil" rel="stylesheet">
+    <meta charset="UTF-8">
+    <link rel="icon" href="Imagens/Icon1/favicon.ico" type="image/x-icon"?v=2 />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <script type="text/javascript">
+      function draw(){
+        var canvas = document.getElementById('meuCanvas');
+        if (canvas.getContext){
+          var cntxt = canvas.getContext('2d');
+
+
+          /***** Criando os objetos gradientes *****/
+          var grad = cntxt.createLinearGradient(0, 0, 200, 0);
+          var gradInf = cntxt.createLinearGradient(0, 0, 200, 0);
+          var gradR = cntxt.createRadialGradient(200, 100, 95, 395, 100, 100);
+          /*var gradR = cntxt.createRadialGradient(300, 100, 15, 300, 100, 100);*/
+          var gradRinf = cntxt.createRadialGradient(300, 300, 15, 300, 300, 100);
+
+
+          /***** Adiconando os Color Stop de cada gradiente *****/
+
+          grad.addColorStop(0,"Red");
+          grad.addColorStop(1,"rgb(0, 0, 255)");
+
+
+          gradInf.addColorStop(0, "rgb(120, 10, 10)");
+          gradInf.addColorStop(0.5, "rgb(10, 120, 10)");
+          gradInf.addColorStop(1, "rgb(10, 10, 120)");
+
+
+          gradR.addColorStop(0, "green");
+          gradR.addColorStop(1, "rgb(255, 0, 0)");
+
+
+          gradRinf.addColorStop(0, "#0000ff");
+          gradRinf.addColorStop(0.25, "#ffff00");
+          gradRinf.addColorStop(0.5, "#00ff00");
+          gradRinf.addColorStop(0.75, "#ff0000");
+          gradRinf.addColorStop(1, "#ffffff");
+
+
+          /***** Quadrado Superior Esquerdo *****/ 
+
+          cntxt.beginPath();
+          cntxt.fillStyle = grad;
+          cntxt.fillRect(5, 5, 195, 195);
+          cntxt.stroke();
+          cntxt.closePath();
+          /***** Olho inferior esquerdo ****/
+          cntxt.beginPath();
+          cntxt.fillStyle = gradInf;
+          cntxt.moveTo(10, 300);
+          cntxt.quadraticCurveTo(100, 200, 190, 300);
+          cntxt.fill();
+          cntxt.stroke();
+          cntxt.beginPath();
+          cntxt.moveTo(10, 300);
+          cntxt.quadraticCurveTo(100,400, 190, 300);
+          cntxt.fill();
+          cntxt.stroke();
+          cntxt.closePath();
+
+
+          /***** Circulo Superior Direito *****/
+
+          cntxt.beginPath();
+          cntxt.fillStyle = gradR;
+          cntxt.arc(300, 100, 97, 0, Math.PI * 2, true);
+          cntxt.fill();
+          cntxt.stroke();
+          cntxt.closePath();
+
+
+          /***** Olho inferior direito *****/
+
+          cntxt.beginPath();
+          cntxt.fillStyle = gradRinf;
+          cntxt.moveTo(210, 300);
+          cntxt.quadraticCurveTo(300, 200, 390, 300);
+          cntxt.fill();
+          cntxt.stroke();
+          cntxt.beginPath();
+          cntxt.moveTo(210, 300);
+          cntxt.quadraticCurveTo(300,400, 390, 300);
+          cntxt.fill();
+          cntxt.stroke();
+          cntxt.closePath();
+
+
+        }
+      }
+    </script>
+  </head>
+  <body onload="draw();">
+    <canvas id="meuCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
+  </body>
+</html>
